@@ -1,0 +1,5 @@
+ADD_SUBDIRECTORY(SimpleFactory)
+ADD_SUBDIRECTORY(FactoryMethod)
+ADD_SUBDIRECTORY(AbstractFactory)
+ADD_SUBDIRECTORY(TemplateFactory)
+ADD_SUBDIRECTORY(SingletonFactory)

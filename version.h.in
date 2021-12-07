@@ -1,0 +1,9 @@
+// the configured options and settings
+#ifndef CONFIG_H
+#define CONFIG_H
+
+#define VERSION "@VERSION@"
+
+#cmakedefine BUILD_PATTERN
+
+#endif
