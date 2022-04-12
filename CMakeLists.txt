@@ -24,6 +24,6 @@ option(BUILD_PATTERN	"Build Pattern" 	ON)
 
 
 if(BUILD_PATTERN)
-	add_subdirectory(pattern/factory)
+	add_subdirectory(DesignPattern)
 endif(BUILD_PATTERN)
 
