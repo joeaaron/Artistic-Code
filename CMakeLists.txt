@@ -22,7 +22,6 @@ include_directories("${CMAKE_SOURCE_DIR}/include/")
 
 option(BUILD_PATTERN	"Build Pattern" 	ON)
 
-
 if(BUILD_PATTERN)
 	add_subdirectory(DesignPattern)
 endif(BUILD_PATTERN)
