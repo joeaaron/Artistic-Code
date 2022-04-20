@@ -2,27 +2,36 @@
 #include <string>
 #include <chrono>
 #include <thread>
+#include <mutex>
 /**
- * The Singleton class defines the `GetInstance` method that serves as an
- * alternative to constructor and lets clients access the same instance of this
- * class over and over.
- */
+* The Singleton class defines the `GetInstance` method that serves as an
+* alternative to constructor and lets clients access the same instance of this
+* class over and over.
+*/
+
 class Singleton
 {
+
+	/**
+	 * The Singleton's constructor/destructor should always be private to
+	 * prevent direct construction/desctruction calls with the `new`/`delete`
+	 * operator.
+	 */
+private:
+	static Singleton * pinstance_;
+	static std::mutex mutex_;
+
 protected:
-	Singleton(const std::string value) :value_(value)
+	Singleton(const std::string value) : value_(value)
 	{
-
 	}
-	
-	static Singleton* singleton_;
-
+	~Singleton() {}
 	std::string value_;
 
 public:
 	/**
-  * Singletons should not be cloneable.
-  */
+	 * Singletons should not be cloneable.
+	 */
 	Singleton(Singleton &other) = delete;
 	/**
 	 * Singletons should not be assignable.
@@ -50,21 +59,26 @@ public:
 	}
 };
 
-Singleton* Singleton::singleton_ = nullptr;;
-
 /**
  * Static methods should be defined outside the class.
  */
+
+Singleton* Singleton::pinstance_{ nullptr };
+std::mutex Singleton::mutex_;
+
+/**
+ * The first time we call GetInstance we will lock the storage location
+ *      and then we make sure again that the variable is null and then we
+ *      set the value. RU:
+ */
 Singleton *Singleton::GetInstance(const std::string& value)
 {
-	/**
-	 * This is a safer way to create an instance. instance = new Singleton is
-	 * dangeruous in case two instance threads wants to access at the same time
-	 */
-	if (singleton_ == nullptr) {
-		singleton_ = new Singleton(value);
+	std::lock_guard<std::mutex> lock(mutex_);
+	if (pinstance_ == nullptr)
+	{
+		pinstance_ = new Singleton(value);
 	}
-	return singleton_;
+	return pinstance_;
 }
 
 void ThreadFoo() {
@@ -88,11 +102,9 @@ int main()
 		"RESULT:\n";
 	std::thread t1(ThreadFoo);
 	std::thread t2(ThreadBar);
-
 	t1.join();
 	t2.join();
 
 	system("pause");
 	return 0;
 }
-
