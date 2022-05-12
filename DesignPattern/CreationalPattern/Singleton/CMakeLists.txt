@@ -1,4 +1,2 @@
 ADD_SUBDIRECTORY(Simple)
-ADD_SUBDIRECTORY(ThreadSafety)
 ADD_SUBDIRECTORY(BestPractice)
-ADD_SUBDIRECTORY(BestPracticeTemplate)
