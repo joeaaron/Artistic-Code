@@ -24,7 +24,7 @@ public:
 int main()
 {
 	auto& a = Singleton::GetInstance();
-	auto&b = Singleton::GetInstance();
+	auto& b = Singleton::GetInstance();
 	assert(&a == &b);
 
 	return 0;
