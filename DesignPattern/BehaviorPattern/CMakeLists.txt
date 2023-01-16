@@ -1,1 +1,2 @@
 ADD_SUBDIRECTORY(Strategy)
+ADD_SUBDIRECTORY(TemplateMethod)
