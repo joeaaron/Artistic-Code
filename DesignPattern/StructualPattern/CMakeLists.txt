@@ -1,1 +1,2 @@
 ADD_SUBDIRECTORY(Flyweight)
+ADD_SUBDIRECTORY(Decorator)
