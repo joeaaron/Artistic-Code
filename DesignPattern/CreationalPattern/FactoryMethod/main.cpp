@@ -49,7 +49,8 @@ public:
 	 * returning a different type of product from it.
 	 */
 
-	std::string SomeOperation() const {
+	std::string SomeOperation() const
+	{
 		// Call the factory method to create a Product object.
 		Product* product = this->FactoryMethod();
 		// Now, use the product.
@@ -104,6 +105,7 @@ int main()
 	std::cout << "App: Launched with the ConcreteCreator1.\n";
 	Creator* creator = new ConcreteCreator1();
 	ClientCode(*creator);
+
 	std::cout << std::endl;
 	std::cout << "App: Launched with the ConcreteCreator2.\n";
 	Creator* creator2 = new ConcreteCreator2();

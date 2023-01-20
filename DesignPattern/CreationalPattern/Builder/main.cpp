@@ -10,7 +10,7 @@
 #include <vector>
 #include <string>
 
-class Product1
+class Product
 {
 public:
 	std::vector<std::string> parts_;
@@ -53,7 +53,7 @@ public:
 class ConcreteBuilder1 : public Builder
 {
 private:
-	Product1* product;
+	Product* product;
 	/**
 	 * A fresh builder instance should contain a blank product object, which is
 	 * used in further assembly.
@@ -72,7 +72,7 @@ public:
 
 	void Reset()
 	{
-		this->product = new Product1();
+		this->product = new Product();
 	}
 
 	/**
@@ -115,9 +115,9 @@ public:
 	* memory leaks
 	*/
 
-	Product1* GetProduct() 
+	Product* GetProduct() 
 	{
-		Product1* result = this->product;
+		Product* result = this->product;
 		this->Reset();
 		return result;
 	}
@@ -184,7 +184,7 @@ void ClientCode(Director& director)
 	std::cout << "Standard basic product:\n";
 	director.BuildMinimalViableProduct();
 
-	Product1* p = builder->GetProduct();
+	Product* p = builder->GetProduct();
 	p->ListParts();
 	delete p;
 

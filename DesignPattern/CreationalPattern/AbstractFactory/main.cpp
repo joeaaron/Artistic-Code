@@ -15,7 +15,8 @@ public:
 /**
  * Concrete Products are created by corresponding Concrete Factories.
  */
-class ConcreteProductA1 : public AbstractProductA {
+class ConcreteProductA1 : public AbstractProductA
+{
 public:
 	std::string UsefulFunctionA() const override {
 		return "The result of the product A1.";
@@ -33,7 +34,8 @@ class ConcreteProductA2 : public AbstractProductA {
  * with each other, but proper interaction is possible only between products of
  * the same concrete variant.
  */
-class AbstractProductB {
+class AbstractProductB
+{
 	/**
 	 * Product B is able to do its own thing...
 	 */
@@ -52,7 +54,8 @@ public:
 /**
  * Concrete Products are created by corresponding Concrete Factories.
  */
-class ConcreteProductB1 : public AbstractProductB {
+class ConcreteProductB1 : public AbstractProductB 
+{
 public:
 	std::string UsefulFunctionB() const override {
 		return "The result of the product B1.";
@@ -68,7 +71,8 @@ public:
 	}
 };
 
-class ConcreteProductB2 : public AbstractProductB {
+class ConcreteProductB2 : public AbstractProductB
+{
 public:
 	std::string UsefulFunctionB() const override {
 		return "The result of the product B2.";
@@ -93,7 +97,8 @@ public:
  * variants, but the products of one variant are incompatible with products of
  * another.
  */
-class AbstractFactory {
+class AbstractFactory
+{
 public:
 	virtual AbstractProductA *CreateProductA() const = 0;
 	virtual AbstractProductB *CreateProductB() const = 0;
@@ -105,7 +110,8 @@ public:
  * that signatures of the Concrete Factory's methods return an abstract product,
  * while inside the method a concrete product is instantiated.
  */
-class ConcreteFactory1 : public AbstractFactory {
+class ConcreteFactory1 : public AbstractFactory 
+{
 public:
 	AbstractProductA *CreateProductA() const override {
 		return new ConcreteProductA1();
@@ -118,7 +124,8 @@ public:
 /**
  * Each Concrete Factory has a corresponding product variant.
  */
-class ConcreteFactory2 : public AbstractFactory {
+class ConcreteFactory2 : public AbstractFactory 
+{
 public:
 	AbstractProductA *CreateProductA() const override {
 		return new ConcreteProductA2();
@@ -134,24 +141,32 @@ public:
  * product subclass to the client code without breaking it.
  */
 
-void ClientCode(const AbstractFactory &factory) {
+void ClientCode(const AbstractFactory &factory)
+{
 	const AbstractProductA *product_a = factory.CreateProductA();
 	const AbstractProductB *product_b = factory.CreateProductB();
+
 	std::cout << product_b->UsefulFunctionB() << "\n";
 	std::cout << product_b->AnotherUsefulFunctionB(*product_a) << "\n";
+
 	delete product_a;
 	delete product_b;
 }
 
-int main() {
+int main() 
+{
 	std::cout << "Client: Testing client code with the first factory type:\n";
+
 	ConcreteFactory1 *f1 = new ConcreteFactory1();
 	ClientCode(*f1);
 	delete f1;
+
 	std::cout << std::endl;
 	std::cout << "Client: Testing the same client code with the second factory type:\n";
+
 	ConcreteFactory2 *f2 = new ConcreteFactory2();
 	ClientCode(*f2);
 	delete f2;
+
 	return 0;
 }
