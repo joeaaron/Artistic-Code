@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.9)
-project(01-SRP)
+project(02-ObeyOCP)
 set(CMAKE_CXX_STANDARD 11)
 
 set(SOURCE_FILES main.cpp)
-add_executable(01-SRP ${SOURCE_FILES})
+add_executable(02-ObeyOCP ${SOURCE_FILES})
