@@ -4,6 +4,6 @@
 
 #define VERSION "1.0.0"
 
-#define BUILD_PATTERN
+/* #undef BUILD_PATTERN */
 
 #endif

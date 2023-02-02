@@ -20,9 +20,13 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${EXECUTABLE_OUTPUT_PATH})
 link_directories("${CMAKE_CURRENT_SOURCE_DIR}/lib")
 include_directories("${CMAKE_SOURCE_DIR}/include/")
 
-option(BUILD_PATTERN	"Build Pattern" 	ON)
+option(BUILD_PATTERN	"Build Pattern" 	OFF)
+option(BUILD_PRINCIPLE	"Build Principle" 	OFF)
 
 if(BUILD_PATTERN)
 	add_subdirectory(DesignPattern)
 endif(BUILD_PATTERN)
 
+if(BUILD_PRINCIPLE)
+	add_subdirectory(DesignPrinciple)
+endif(BUILD_PRINCIPLE)
