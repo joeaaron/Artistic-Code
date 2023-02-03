@@ -3,4 +3,4 @@ project(02-ObeyOCP)
 set(CMAKE_CXX_STANDARD 11)
 
 set(SOURCE_FILES main.cpp)
-add_executable(02-ObeyOCP ${SOURCE_FILES})
+add_executable(${PROJECT_NAME} ${SOURCE_FILES})
