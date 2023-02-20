@@ -1,4 +1,3 @@
-#include "ConcreteFlyweight.h"
 #include "FlyweightFactory.h"
 #include <ctime>
 
