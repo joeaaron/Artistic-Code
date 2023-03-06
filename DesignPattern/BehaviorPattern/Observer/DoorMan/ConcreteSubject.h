@@ -10,9 +10,8 @@ class ConcreteSubject :public ISubject
 public:
 	void Attach(IObserver *pObserver);
 	void Detach(IObserver *pObserver);
-	void Notify();
+	void Notify(const std::string& strMsgs);
 
-	void ModifyStatus(std::string strStatus);
 
 private:
 	std::list<IObserver *> m_ObserverList;
@@ -25,28 +24,20 @@ void ConcreteSubject::Attach(IObserver *pObserver)
 
 void ConcreteSubject::Detach(IObserver *pObserver)
 {
-	m_ObserverList.remove(pObserver);
+	if (m_ObserverList.size() > 0)
+	{
+		m_ObserverList.remove(pObserver);
+	}
+	
 }
 
-void ConcreteSubject::Notify()
+void ConcreteSubject::Notify(const std::string& strMsgs)
 {
 	std::list<IObserver *>::iterator it = m_ObserverList.begin();
 	while (it != m_ObserverList.end())
 	{
-		(*it)->Upate();
+		(*it)->Update(strMsgs);
 		++it;
 	}
 }
 
-void ConcreteSubject::ModifyStatus(std::string strStatus)
-{
-	if (strStatus == "Boss is coming")
-	{
-		std::cout << "Boss is coming, please notify!";
-		Notify();
-	}
-	else
-	{
-		std::cout << strStatus << ", not the Boss, don't notify!";
-	}
-}

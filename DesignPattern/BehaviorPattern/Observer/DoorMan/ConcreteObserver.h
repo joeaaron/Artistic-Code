@@ -3,24 +3,37 @@
 
 #include "AbstractClass.h"
 
-class ConcreteObserverA : public IObserver
+class RoomMate : public IObserver 
 {
 public:
-	ConcreteObserverA() {}
-
-	void Update()
+	RoomMate(std::string name, std::string now, std::string action)
 	{
-		std::cout << "Close the live now!";
-	}
+		_name = name;
+		_action = action;
+		_now = now;
+	};
+	     
+	void Update(const std::string &msg);
+	    
+	std::string GetName();
+
+private:
+	std::string _name;
+	std::string _action;
+	std::string _now;
 };
 
-class ConcreteObserverB :public IObserver
+std::string RoomMate::GetName() 
 {
-public:
-	ConcreteObserverB() {}
+	return _name;
+}
 
-	void Update()
-	{
-		std::cout << "Put down your mobile phone now!";
-	}
-};
+void RoomMate::Update(const std::string &msg) 
+{
+	std::cout << "This is " << _name << std::endl;
+
+	if (msg == "µãÃûÁË")
+		std::cout << "Action: " << _action<< std::endl << std::endl;
+	else
+		 std::cout << "Go on£º" << _now << std::endl << std::endl;
+}
