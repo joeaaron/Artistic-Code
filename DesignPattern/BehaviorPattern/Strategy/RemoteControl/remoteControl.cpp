@@ -82,11 +82,11 @@ public:
 
 };
 
-//策略接口
+// Context
 class Character
 {
 public:
-	void setCommand(ICommandStrategy * comStra)  //创建命令对象
+	void SetCommand(ICommandStrategy * comStra)  //创建命令对象
 	{
 		if (comStra == nullptr)
 		{
@@ -108,7 +108,6 @@ public:
 		{
 			string com = this->pCom->Command();  //生成命令
 			tcpClient->SendCMD(com); //发送命令
-
 		}
 
 	}
@@ -126,7 +125,7 @@ public:
 		mapStrategy.insert(pair<string, ICommandStrategy*>("2", new CloseCmd));
 		mapStrategy.insert(pair<string, ICommandStrategy*>("3", new SearchCmd));
 	}
-	ICommandStrategy* getComService(string comType)
+	ICommandStrategy* GetComService(string comType)
 	{
 		if (mapStrategy.count(comType) == 0)
 		{
@@ -148,18 +147,18 @@ string OnUpdate(string inJson)
 {
 	Character* cha = new Character;
 	ServiceFactory fac;
-	ICommandStrategy* Str = fac.getComService(inJson);
-	if (Str == nullptr)
+	ICommandStrategy* cmd = fac.GetComService(inJson);
+	if (cmd == nullptr)
 	{
 		return "FALSE";
 	}
 	else
 	{
-		cha->setCommand(Str);
+		cha->SetCommand(cmd);
 		cha->TCPSend();
 	}
 
-	delete Str;
+	delete cmd;
 	delete cha;
 	return OK;
 }
