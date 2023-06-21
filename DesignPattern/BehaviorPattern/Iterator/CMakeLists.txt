@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.9)
-project(18-Iterator)
+project(19-Iterator)
 set(CMAKE_CXX_STANDARD 11)
 
 set(SOURCE_FILES main.cpp)
