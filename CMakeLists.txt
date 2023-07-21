@@ -22,6 +22,7 @@ include_directories("${CMAKE_SOURCE_DIR}/include/")
 
 option(BUILD_PATTERN	"Build Pattern" 	OFF)
 option(BUILD_PRINCIPLE	"Build Principle" 	OFF)
+option(BUILD_CONCURRENT	"Build Concurrent" 	OFF)
 
 if(BUILD_PATTERN)
 	add_subdirectory(DesignPattern)
@@ -30,3 +31,7 @@ endif(BUILD_PATTERN)
 if(BUILD_PRINCIPLE)
 	add_subdirectory(DesignPrinciple)
 endif(BUILD_PRINCIPLE)
+
+if(BUILD_CONCURRENT)
+	add_subdirectory(Concurrent)
+endif(BUILD_CONCURRENT)
